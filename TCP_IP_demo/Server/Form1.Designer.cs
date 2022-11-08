@@ -103,16 +103,16 @@
             // txtStatus
             // 
             this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtStatus.Location = new System.Drawing.Point(22, 89);
+            this.txtStatus.Location = new System.Drawing.Point(22, 90);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(577, 177);
+            this.txtStatus.Size = new System.Drawing.Size(577, 194);
             this.txtStatus.TabIndex = 6;
             // 
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClear.Location = new System.Drawing.Point(502, 272);
+            this.btnClear.Location = new System.Drawing.Point(502, 290);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(97, 30);
             this.btnClear.TabIndex = 7;
@@ -124,7 +124,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelStatus.Location = new System.Drawing.Point(19, 53);
+            this.labelStatus.Location = new System.Drawing.Point(18, 59);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(69, 28);
             this.labelStatus.TabIndex = 8;
@@ -133,10 +133,10 @@
             // txtLabelStatus
             // 
             this.txtLabelStatus.AutoSize = true;
-            this.txtLabelStatus.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtLabelStatus.Location = new System.Drawing.Point(85, 53);
+            this.txtLabelStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtLabelStatus.Location = new System.Drawing.Point(85, 65);
             this.txtLabelStatus.Name = "txtLabelStatus";
-            this.txtLabelStatus.Size = new System.Drawing.Size(20, 28);
+            this.txtLabelStatus.Size = new System.Drawing.Size(16, 21);
             this.txtLabelStatus.TabIndex = 9;
             this.txtLabelStatus.Text = "-";
             // 
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 311);
+            this.ClientSize = new System.Drawing.Size(620, 332);
             this.Controls.Add(this.txtLabelStatus);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.btnClear);
