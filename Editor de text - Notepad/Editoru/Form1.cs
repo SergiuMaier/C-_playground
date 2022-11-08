@@ -69,7 +69,7 @@ namespace Editoru
 
             }
         }
-            private string fileNameInEditor = null;
+        private string fileNameInEditor = null;
         private bool isSaved = true;
 
         private void updateInterface()
