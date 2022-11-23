@@ -43,13 +43,14 @@ namespace TCPClient
             {
                 if (!string.IsNullOrEmpty(txtMessage.Text))
                 {
+                    txtInfo.Text += $"{DateTime.UtcNow}{Environment.NewLine}";
+
                     var startTime = DateTime.UtcNow;
+                    
                     client.Send(txtMessage.Text);
-                    //client.Send(Convert.ToString(DateTime.UtcNow - startTime)); 
 
                     txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}";
                     txtInfo.Text += $"(transfer time: {DateTime.UtcNow - startTime}){Environment.NewLine}{Environment.NewLine}";
-                    
                     txtMessage.Text = string.Empty;
                 }
             }
@@ -59,7 +60,10 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
+                txtInfo.Text += $"{DateTime.UtcNow}{Environment.NewLine}";
+
                 var startTime = DateTime.UtcNow;
+               
                 txtInfo.Text += $"Server: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
                 txtInfo.Text += $"(transfer time: {DateTime.UtcNow - startTime}){Environment.NewLine}{Environment.NewLine}";
             });
@@ -77,7 +81,7 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                txtInfo.Text += $"Server {e.IpPort} disconnected.{Environment.NewLine}{Environment.NewLine}";
+                txtInfo.Text += $"Server [{e.IpPort}] disconnected.{Environment.NewLine}{Environment.NewLine}";
             });
         }
     }

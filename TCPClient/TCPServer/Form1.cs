@@ -46,33 +46,40 @@ namespace TCPServer
         {
             this.Invoke((MethodInvoker)delegate
             {
-                var startTime = DateTime.UtcNow;
-                txtInfo.Text += $"{e.IpPort}: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
+                txtInfo.Text += $"{DateTime.UtcNow}{Environment.NewLine}";
 
+                var startTime = DateTime.UtcNow;
+
+                txtInfo.Text += $"Client [{e.IpPort}]: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
                 txtInfo.Text += $"(transfer time: {DateTime.UtcNow - startTime} ms){Environment.NewLine}{Environment.NewLine}";
             });
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            try 
+            if (server.IsListening)
             {
-                if (server.IsListening)
+                try
                 {
                     if (!string.IsNullOrEmpty(txtMessage.Text) && listClientIP.SelectedItems != null)
                     {
+                        txtInfo.Text += $"{DateTime.UtcNow}{Environment.NewLine}";
+
+                        var startTime = DateTime.UtcNow;
+
                         server.Send(listClientIP.SelectedItem.ToString(), txtMessage.Text);
 
-                        txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
-
+                        txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}";
+                        txtInfo.Text += $"(transfer time: {DateTime.UtcNow - startTime}){Environment.NewLine}{Environment.NewLine}";
                         txtMessage.Text = String.Empty;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("A client must be selected!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                catch (Exception ex)
+                {
+                        MessageBox.Show("A client must be selected!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //txtInfo.Text += $"A client must be selected!{Environment.NewLine}{Environment.NewLine}";
+                }
+            } 
         }
 
         private void Events_ClientDisconnected(object? sender, ConnectionEventArgs e)
