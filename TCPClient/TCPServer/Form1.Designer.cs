@@ -53,7 +53,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(2, 485);
+            this.label2.Location = new System.Drawing.Point(2, 473);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 25);
             this.label2.TabIndex = 1;
@@ -71,7 +71,7 @@
             // txtMessage
             // 
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMessage.Location = new System.Drawing.Point(90, 485);
+            this.txtMessage.Location = new System.Drawing.Point(90, 473);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(325, 29);
             this.txtMessage.TabIndex = 4;
@@ -79,7 +79,7 @@
             // btnSend
             // 
             this.btnSend.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSend.Location = new System.Drawing.Point(421, 485);
+            this.btnSend.Location = new System.Drawing.Point(421, 473);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(90, 30);
             this.btnSend.TabIndex = 5;
@@ -124,7 +124,7 @@
             // 
             this.txtInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtInfo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtInfo.Location = new System.Drawing.Point(90, 150);
+            this.txtInfo.Location = new System.Drawing.Point(90, 139);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
@@ -136,7 +136,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 528);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(527, 516);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listClientIP);
             this.Controls.Add(this.btnStart);
@@ -147,6 +148,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "TCP/IP Server";
             this.Load += new System.EventHandler(this.Form1_Load);

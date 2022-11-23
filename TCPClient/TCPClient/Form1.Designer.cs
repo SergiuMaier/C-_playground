@@ -51,7 +51,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(2, 323);
+            this.label2.Location = new System.Drawing.Point(2, 312);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 25);
             this.label2.TabIndex = 1;
@@ -70,7 +70,7 @@
             // 
             this.txtInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtInfo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtInfo.Location = new System.Drawing.Point(91, 61);
+            this.txtInfo.Location = new System.Drawing.Point(91, 49);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
@@ -81,7 +81,7 @@
             // txtMessage
             // 
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMessage.Location = new System.Drawing.Point(91, 323);
+            this.txtMessage.Location = new System.Drawing.Point(91, 312);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(321, 29);
             this.txtMessage.TabIndex = 4;
@@ -89,7 +89,7 @@
             // btnSend
             // 
             this.btnSend.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSend.Location = new System.Drawing.Point(418, 321);
+            this.btnSend.Location = new System.Drawing.Point(418, 310);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(93, 31);
             this.btnSend.TabIndex = 5;
@@ -113,7 +113,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(527, 366);
+            this.ClientSize = new System.Drawing.Size(526, 355);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
