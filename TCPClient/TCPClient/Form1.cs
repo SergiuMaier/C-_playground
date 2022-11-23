@@ -11,6 +11,17 @@ namespace TCPClient
         }
 
         SimpleTcpClient client;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            client = new(txtIP.Text);
+            client.Events.Connected += Events_Connected;
+            client.Events.DataReceived += Events_DataReceived;
+            client.Events.Disconnected += Events_Disconnected;
+
+            btnSend.Enabled = false;
+        }
+
         private void btnConnect_Click(object sender, EventArgs e)
         {
             try
@@ -44,23 +55,6 @@ namespace TCPClient
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            client = new(txtIP.Text);
-            client.Events.Connected += Events_Connected;
-            client.Events.DataReceived += Events_DataReceived;
-            client.Events.Disconnected += Events_Disconnected;
-            
-            btnSend.Enabled = false;
-        }
-        private void Events_Connected(object sender, ConnectionEventArgs e)
-        {
-            this.Invoke((MethodInvoker)delegate
-            {
-                txtInfo.Text += $"Server [{e.IpPort}] connected.{Environment.NewLine}{Environment.NewLine}";
-            });
-        }
-
         private void Events_DataReceived(object sender, DataReceivedEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
@@ -68,6 +62,14 @@ namespace TCPClient
                 var startTime = DateTime.UtcNow;
                 txtInfo.Text += $"Server: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
                 txtInfo.Text += $"(transfer time: {DateTime.UtcNow - startTime}){Environment.NewLine}{Environment.NewLine}";
+            });
+        }
+
+        private void Events_Connected(object sender, ConnectionEventArgs e)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                txtInfo.Text += $"Server [{e.IpPort}] connected.{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
