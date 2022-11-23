@@ -31,19 +31,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.txtInfo = new System.Windows.Forms.TextBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.listClientIP = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtInfo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(33, 13);
+            this.label1.Location = new System.Drawing.Point(20, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 25);
             this.label1.TabIndex = 0;
@@ -53,7 +53,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(12, 328);
+            this.label2.Location = new System.Drawing.Point(2, 485);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 25);
             this.label2.TabIndex = 1;
@@ -62,37 +62,26 @@
             // txtIP
             // 
             this.txtIP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtIP.Location = new System.Drawing.Point(101, 13);
+            this.txtIP.Location = new System.Drawing.Point(90, 13);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(255, 29);
+            this.txtIP.Size = new System.Drawing.Size(203, 29);
             this.txtIP.TabIndex = 2;
             this.txtIP.Text = "127.0.0.1:8910";
-            // 
-            // txtInfo
-            // 
-            this.txtInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtInfo.Location = new System.Drawing.Point(101, 48);
-            this.txtInfo.Multiline = true;
-            this.txtInfo.Name = "txtInfo";
-            this.txtInfo.ReadOnly = true;
-            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInfo.Size = new System.Drawing.Size(453, 274);
-            this.txtInfo.TabIndex = 3;
             // 
             // txtMessage
             // 
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMessage.Location = new System.Drawing.Point(100, 328);
+            this.txtMessage.Location = new System.Drawing.Point(90, 485);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(454, 29);
+            this.txtMessage.Size = new System.Drawing.Size(325, 29);
             this.txtMessage.TabIndex = 4;
             // 
             // btnSend
             // 
             this.btnSend.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSend.Location = new System.Drawing.Point(455, 363);
+            this.btnSend.Location = new System.Drawing.Point(421, 485);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(99, 36);
+            this.btnSend.Size = new System.Drawing.Size(90, 30);
             this.btnSend.TabIndex = 5;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -101,9 +90,9 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnStart.Location = new System.Drawing.Point(350, 363);
+            this.btnStart.Location = new System.Drawing.Point(299, 12);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(99, 36);
+            this.btnStart.Size = new System.Drawing.Size(87, 30);
             this.btnStart.TabIndex = 6;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -111,28 +100,43 @@
             // 
             // listClientIP
             // 
+            this.listClientIP.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listClientIP.FormattingEnabled = true;
-            this.listClientIP.ItemHeight = 15;
-            this.listClientIP.Location = new System.Drawing.Point(560, 48);
+            this.listClientIP.ItemHeight = 20;
+            this.listClientIP.Location = new System.Drawing.Point(90, 48);
             this.listClientIP.Name = "listClientIP";
-            this.listClientIP.Size = new System.Drawing.Size(267, 349);
+            this.listClientIP.Size = new System.Drawing.Size(203, 84);
             this.listClientIP.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(558, 17);
+            this.label3.Location = new System.Drawing.Point(3, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 25);
             this.label3.TabIndex = 8;
             this.label3.Text = "Client IP:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // txtInfo
+            // 
+            this.txtInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtInfo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtInfo.Location = new System.Drawing.Point(90, 150);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.ReadOnly = true;
+            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtInfo.Size = new System.Drawing.Size(421, 327);
+            this.txtInfo.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 412);
+            this.ClientSize = new System.Drawing.Size(527, 528);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listClientIP);
             this.Controls.Add(this.btnStart);
@@ -142,6 +146,7 @@
             this.Controls.Add(this.txtIP);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "TCP/IP Server";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -155,11 +160,11 @@
         private Label label1;
         private Label label2;
         private TextBox txtIP;
-        private TextBox txtInfo;
         private TextBox txtMessage;
         private Button btnSend;
         private Button btnStart;
         private ListBox listClientIP;
         private Label label3;
+        private TextBox txtInfo;
     }
 }
