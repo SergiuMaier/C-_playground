@@ -51,7 +51,7 @@ namespace TCPServer
                 var startTime = DateTime.Now;
 
                 txtInfo.Text += $"Client [{e.IpPort}]: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
-                txtInfo.Text += $"[Elapsed time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
+                txtInfo.Text += $"[Receiving time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
@@ -70,7 +70,7 @@ namespace TCPServer
                         server.Send(listClientIP.SelectedItem.ToString(), txtMessage.Text);
 
                         txtInfo.Text += $"Message: {txtMessage.Text}{Environment.NewLine}";
-                        txtInfo.Text += $"[Elapsed time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
+                        txtInfo.Text += $"[Sending time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
                         txtMessage.Text = String.Empty;
                     }
                 }

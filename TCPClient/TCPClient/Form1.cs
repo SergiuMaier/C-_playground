@@ -50,7 +50,7 @@ namespace TCPClient
                     client.Send(txtMessage.Text);
 
                     txtInfo.Text += $"Message: {txtMessage.Text}{Environment.NewLine}";
-                    txtInfo.Text += $"[Elapsed time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
+                    txtInfo.Text += $"[Sending time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
                     txtMessage.Text = string.Empty;
                 }
             }
@@ -64,7 +64,7 @@ namespace TCPClient
 
                 var startTime = DateTime.Now;
                 txtInfo.Text += $"Server: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
-                txtInfo.Text += $"[Elapsed time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
+                txtInfo.Text += $"[Receiving time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
