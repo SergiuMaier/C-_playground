@@ -43,14 +43,14 @@ namespace TCPClient
             {
                 if (!string.IsNullOrEmpty(txtMessage.Text))
                 {
-                    txtInfo.Text += $"{DateTime.UtcNow}{Environment.NewLine}";
+                    txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
-                    var startTime = DateTime.UtcNow;
+                    var startTime = DateTime.Now;
                     
                     client.Send(txtMessage.Text);
 
-                    txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}";
-                    txtInfo.Text += $"(transfer time: {DateTime.UtcNow - startTime}){Environment.NewLine}{Environment.NewLine}";
+                    txtInfo.Text += $"Message: {txtMessage.Text}{Environment.NewLine}";
+                    txtInfo.Text += $"[Elapsed time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
                     txtMessage.Text = string.Empty;
                 }
             }
@@ -60,12 +60,11 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                txtInfo.Text += $"{DateTime.UtcNow}{Environment.NewLine}";
+                txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
-                var startTime = DateTime.UtcNow;
-               
+                var startTime = DateTime.Now;
                 txtInfo.Text += $"Server: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
-                txtInfo.Text += $"(transfer time: {DateTime.UtcNow - startTime}){Environment.NewLine}{Environment.NewLine}";
+                txtInfo.Text += $"[Elapsed time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
             });
         }
 

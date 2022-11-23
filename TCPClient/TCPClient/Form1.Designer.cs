@@ -89,7 +89,7 @@
             // btnSend
             // 
             this.btnSend.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSend.Location = new System.Drawing.Point(418, 310);
+            this.btnSend.Location = new System.Drawing.Point(418, 312);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(93, 31);
             this.btnSend.TabIndex = 5;
