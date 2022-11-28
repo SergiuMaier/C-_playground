@@ -11,6 +11,8 @@ namespace TCPServer
         }
 
         SimpleTcpServer server;
+        System.Diagnostics.Stopwatch executionTime = new System.Diagnostics.Stopwatch();
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             server.Start();
@@ -46,12 +48,14 @@ namespace TCPServer
         {
             this.Invoke((MethodInvoker)delegate
             {
+                executionTime.Reset();
                 txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
-                var startTime = DateTime.Now;
-
+                executionTime.Start();
                 txtInfo.Text += $"Client [{e.IpPort}]: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
-                txtInfo.Text += $"[Receiving time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
+                executionTime.Stop();
+                 
+                txtInfo.Text += $"[Time: {executionTime.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
@@ -63,18 +67,19 @@ namespace TCPServer
                 {
                     if (!string.IsNullOrEmpty(txtMessage.Text) && listClientIP.SelectedItems != null)
                     {
+                        //executionTime.Reset();
                         txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
-                        var startTime = DateTime.Now;
-
+                        //executionTime.Start();
                         server.Send(listClientIP.SelectedItem.ToString(), txtMessage.Text);
+                        //executionTime.Stop();
 
-                        txtInfo.Text += $"Message: {txtMessage.Text}{Environment.NewLine}";
-                        txtInfo.Text += $"[Sending time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
-                        txtMessage.Text = String.Empty;
+                        txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
+                        //txtInfo.Text += $"[Execution time: {executionTime.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
+                        txtMessage.Text = string.Empty;
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     //MessageBox.Show("A client must be selected!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtInfo.Text += $"A client must be selected!{Environment.NewLine}{Environment.NewLine}";

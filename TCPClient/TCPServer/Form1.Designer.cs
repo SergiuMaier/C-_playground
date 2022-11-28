@@ -64,7 +64,7 @@
             this.txtIP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtIP.Location = new System.Drawing.Point(98, 13);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(219, 29);
+            this.txtIP.Size = new System.Drawing.Size(235, 29);
             this.txtIP.TabIndex = 2;
             this.txtIP.Text = "127.0.0.1:8910";
             // 
@@ -90,7 +90,7 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnStart.Location = new System.Drawing.Point(323, 13);
+            this.btnStart.Location = new System.Drawing.Point(339, 12);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(83, 30);
             this.btnStart.TabIndex = 6;
@@ -105,7 +105,8 @@
             this.listClientIP.ItemHeight = 20;
             this.listClientIP.Location = new System.Drawing.Point(98, 48);
             this.listClientIP.Name = "listClientIP";
-            this.listClientIP.Size = new System.Drawing.Size(219, 84);
+            this.listClientIP.ScrollAlwaysVisible = true;
+            this.listClientIP.Size = new System.Drawing.Size(235, 84);
             this.listClientIP.TabIndex = 7;
             // 
             // label3

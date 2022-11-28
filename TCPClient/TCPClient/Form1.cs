@@ -1,4 +1,6 @@
 using SuperSimpleTcp;
+//using System.Diagnostics;
+//using DataReceiveEventArgs = tool.System.Diagnostics;
 using System.Text;
 
 namespace TCPClient
@@ -11,6 +13,7 @@ namespace TCPClient
         }
 
         SimpleTcpClient client;
+        System.Diagnostics.Stopwatch executionTimeClient = new System.Diagnostics.Stopwatch(); //fixing ambiguous reference between namespaces  
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -43,14 +46,20 @@ namespace TCPClient
             {
                 if (!string.IsNullOrEmpty(txtMessage.Text))
                 {
+                    //executionTimeClient.Reset();
                     txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
-                    var startTime = DateTime.Now;
-                    
-                    client.Send(txtMessage.Text);
+                    //alta varianta de calcul timp
+                    //var startTime = DateTime.Now;
+                    //...
+                    //Sending time: {DateTime.Now - startTime}
 
-                    txtInfo.Text += $"Message: {txtMessage.Text}{Environment.NewLine}";
-                    txtInfo.Text += $"[Sending time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
+                    //executionTimeClient.Start();
+                    client.Send(txtMessage.Text);
+                    //executionTimeClient.Stop();
+
+                    txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
+                    //txtInfo.Text += $"[Execution time: {executionTimeClient.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
                     txtMessage.Text = string.Empty;
                 }
             }
@@ -60,11 +69,14 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
+                executionTimeClient.Reset();
                 txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
-                var startTime = DateTime.Now;
+                executionTimeClient.Start();
                 txtInfo.Text += $"Server: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
-                txtInfo.Text += $"[Receiving time: {DateTime.Now - startTime} seconds]{Environment.NewLine}{Environment.NewLine}";
+                executionTimeClient.Stop();
+
+                txtInfo.Text += $"[Time: {executionTimeClient.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
@@ -72,7 +84,7 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                txtInfo.Text += $"Server [{e.IpPort}] connected.{Environment.NewLine}{Environment.NewLine}";
+                txtInfo.Text += $"Connected to server [{e.IpPort}].{Environment.NewLine}{Environment.NewLine}";
             });
         }
 

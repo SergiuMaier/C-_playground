@@ -62,7 +62,7 @@
             this.txtIP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtIP.Location = new System.Drawing.Point(97, 13);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(225, 29);
+            this.txtIP.Size = new System.Drawing.Size(236, 29);
             this.txtIP.TabIndex = 2;
             this.txtIP.Text = "127.0.0.1:8910";
             // 
@@ -100,9 +100,9 @@
             // btnConnect
             // 
             this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnConnect.Location = new System.Drawing.Point(328, 13);
+            this.btnConnect.Location = new System.Drawing.Point(339, 12);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(83, 29);
+            this.btnConnect.Size = new System.Drawing.Size(83, 30);
             this.btnConnect.TabIndex = 6;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
