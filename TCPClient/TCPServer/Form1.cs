@@ -16,7 +16,7 @@ namespace TCPServer
         private void btnStart_Click(object sender, EventArgs e)
         {
             server.Start();
-            
+
             txtInfo.Text = $"Starting...{Environment.NewLine}";
             
             btnStart.Enabled = false;
@@ -25,14 +25,13 @@ namespace TCPServer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            btnSend.Enabled = false;
-           
-            server = new SimpleTcpServer(txtIP.Text);
+            server = new SimpleTcpServer(txtIP.Text + ":" + txtPort.Text);
             
             server.Events.ClientConnected += Events_ClientConnected;
             server.Events.ClientDisconnected += Events_ClientDisconnected;
             server.Events.DataReceived += Events_DataReceived;
 
+            btnSend.Enabled = false;
         }
 
         private void Events_ClientConnected(object sender, ConnectionEventArgs e)
@@ -48,13 +47,13 @@ namespace TCPServer
         {
             this.Invoke((MethodInvoker)delegate
             {
-                //executionTime.Reset();
                 txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
+                //executionTime.Reset();
                 executionTime.Start();
                 txtInfo.Text += $"Client [{e.IpPort}]: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
                 executionTime.Stop();
-                 
+                
                 txtInfo.Text += $"[Time: {executionTime.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
             });
         }
@@ -68,12 +67,11 @@ namespace TCPServer
                     if (!string.IsNullOrEmpty(txtMessage.Text) && listClientIP.SelectedItems != null)
                     {
                         //executionTime.Reset();
-                        txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
-
                         //executionTime.Start();
                         server.Send(listClientIP.SelectedItem.ToString(), txtMessage.Text);
                         //executionTime.Stop();
 
+                        txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
                         txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
                         //txtInfo.Text += $"[Execution time: {executionTime.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
                         txtMessage.Text = string.Empty;
@@ -81,8 +79,8 @@ namespace TCPServer
                 }
                 catch
                 {
-                    //MessageBox.Show("A client must be selected!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtInfo.Text += $"A client must be selected!{Environment.NewLine}{Environment.NewLine}";
+                    MessageBox.Show("A client must be selected!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //txtInfo.Text += $"A client must be selected!{Environment.NewLine}{Environment.NewLine}";
                 }
             } 
         }

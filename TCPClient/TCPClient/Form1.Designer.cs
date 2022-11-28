@@ -35,17 +35,19 @@
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
+            this.txtPort = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(27, 13);
+            this.label1.Location = new System.Drawing.Point(8, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 25);
+            this.label1.Size = new System.Drawing.Size(90, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Server:";
+            this.label1.Text = "Server IP:";
             // 
             // label2
             // 
@@ -62,9 +64,8 @@
             this.txtIP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtIP.Location = new System.Drawing.Point(97, 13);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(236, 29);
+            this.txtIP.Size = new System.Drawing.Size(114, 29);
             this.txtIP.TabIndex = 2;
-            this.txtIP.Text = "127.0.0.1:8910";
             // 
             // txtInfo
             // 
@@ -109,12 +110,32 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
+            // txtPort
+            // 
+            this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPort.Location = new System.Drawing.Point(269, 13);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Size = new System.Drawing.Size(64, 29);
+            this.txtPort.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(217, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 25);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Port:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(526, 355);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtPort);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
@@ -141,5 +162,7 @@
         private TextBox txtMessage;
         private Button btnSend;
         private Button btnConnect;
+        private TextBox txtPort;
+        private Label label3;
     }
 }

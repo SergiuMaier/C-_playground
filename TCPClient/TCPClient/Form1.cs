@@ -1,6 +1,4 @@
 using SuperSimpleTcp;
-//using System.Diagnostics;
-//using DataReceiveEventArgs = tool.System.Diagnostics;
 using System.Text;
 
 namespace TCPClient
@@ -17,11 +15,6 @@ namespace TCPClient
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            client = new(txtIP.Text);
-            client.Events.Connected += Events_Connected;
-            client.Events.DataReceived += Events_DataReceived;
-            client.Events.Disconnected += Events_Disconnected;
-
             btnSend.Enabled = false;
         }
 
@@ -29,14 +22,20 @@ namespace TCPClient
         {
             try
             {
+                client = new SimpleTcpClient(txtIP.Text + ":" + txtPort.Text);
+                
+                client.Events.Connected += Events_Connected;
+                client.Events.DataReceived += Events_DataReceived;
+                client.Events.Disconnected += Events_Disconnected;
+
                 client.Connect();
                 
                 btnSend.Enabled = true;
                 btnConnect.Enabled = false;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An IP address and port must be added.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -45,19 +44,18 @@ namespace TCPClient
             if (client.IsConnected)
             {
                 if (!string.IsNullOrEmpty(txtMessage.Text))
-                {
-                    //executionTimeClient.Reset();
-                    txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
-
+                { 
                     //alta varianta de calcul timp
                     //var startTime = DateTime.Now;
                     //...
                     //Sending time: {DateTime.Now - startTime}
-
+                    
+                    //executionTimeClient.Reset();
                     //executionTimeClient.Start();
                     client.Send(txtMessage.Text);
                     //executionTimeClient.Stop();
 
+                    txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
                     txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
                     //txtInfo.Text += $"[Execution time: {executionTimeClient.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
                     txtMessage.Text = string.Empty;     
@@ -75,7 +73,7 @@ namespace TCPClient
                 executionTimeClient.Start();
                 txtInfo.Text += $"Server: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
                 executionTimeClient.Stop();
-
+                
                 txtInfo.Text += $"[Time: {executionTimeClient.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
             });
         }

@@ -37,17 +37,19 @@
             this.listClientIP = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtInfo = new System.Windows.Forms.TextBox();
+            this.txtPort = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(28, 13);
+            this.label1.Location = new System.Drawing.Point(8, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 25);
+            this.label1.Size = new System.Drawing.Size(90, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Server:";
+            this.label1.Text = "Server IP:";
             // 
             // label2
             // 
@@ -64,9 +66,9 @@
             this.txtIP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtIP.Location = new System.Drawing.Point(98, 13);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(235, 29);
+            this.txtIP.Size = new System.Drawing.Size(115, 29);
             this.txtIP.TabIndex = 2;
-            this.txtIP.Text = "127.0.0.1:8910";
+            this.txtIP.Text = "127.0.0.1";
             // 
             // txtMessage
             // 
@@ -114,11 +116,11 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(11, 46);
+            this.label3.Location = new System.Drawing.Point(24, 46);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 25);
+            this.label3.Size = new System.Drawing.Size(73, 25);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Client IP:";
+            this.label3.Text = "Clients:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // txtInfo
@@ -134,12 +136,35 @@
             this.txtInfo.TabIndex = 3;
             this.txtInfo.TextChanged += new System.EventHandler(this.txtInfo_TextChanged);
             // 
+            // txtPort
+            // 
+            this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPort.Location = new System.Drawing.Point(269, 13);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Size = new System.Drawing.Size(64, 29);
+            this.txtPort.TabIndex = 9;
+            this.txtPort.Text = "8910";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(219, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 25);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Port:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(526, 478);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtPort);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listClientIP);
             this.Controls.Add(this.btnStart);
@@ -170,5 +195,7 @@
         private ListBox listClientIP;
         private Label label3;
         private TextBox txtInfo;
+        private TextBox txtPort;
+        private Label label4;
     }
 }
