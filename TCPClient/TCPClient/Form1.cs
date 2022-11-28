@@ -60,7 +60,7 @@ namespace TCPClient
 
                     txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
                     //txtInfo.Text += $"[Execution time: {executionTimeClient.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
-                    txtMessage.Text = string.Empty;
+                    txtMessage.Text = string.Empty;     
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                executionTimeClient.Reset();
+                //executionTimeClient.Reset();
                 txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
                 executionTimeClient.Start();
@@ -94,6 +94,12 @@ namespace TCPClient
             {
                 txtInfo.Text += $"Server [{e.IpPort}] disconnected.{Environment.NewLine}{Environment.NewLine}";
             });
+        }
+
+        private void txtInfo_TextChanged(object sender, EventArgs e)
+        {
+            txtInfo.SelectionStart = txtInfo.TextLength;
+            txtInfo.ScrollToCaret();
         }
     }
 }

@@ -48,7 +48,7 @@ namespace TCPServer
         {
             this.Invoke((MethodInvoker)delegate
             {
-                executionTime.Reset();
+                //executionTime.Reset();
                 txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
 
                 executionTime.Start();
@@ -94,6 +94,12 @@ namespace TCPServer
                 txtInfo.Text += $"Client [{e.IpPort}] disconnected.{Environment.NewLine}{Environment.NewLine}";
                 listClientIP.Items.Remove(e.IpPort);
             });
+        }
+
+        private void txtInfo_TextChanged(object sender, EventArgs e)
+        {
+            txtInfo.SelectionStart = txtInfo.TextLength;
+            txtInfo.ScrollToCaret();
         }
     }
 }

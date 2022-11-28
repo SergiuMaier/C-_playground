@@ -77,6 +77,7 @@
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtInfo.Size = new System.Drawing.Size(499, 259);
             this.txtInfo.TabIndex = 3;
+            this.txtInfo.TextChanged += new System.EventHandler(this.txtInfo_TextChanged);
             // 
             // txtMessage
             // 
