@@ -5,36 +5,63 @@ namespace TCPServer
 {
     public partial class Form1 : Form
     {
+        SimpleTcpServer server;
+        System.Diagnostics.Stopwatch executionTime = new System.Diagnostics.Stopwatch();
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        SimpleTcpServer server;
-        System.Diagnostics.Stopwatch executionTime = new System.Diagnostics.Stopwatch();
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            server = new SimpleTcpServer(txtIP.Text + ":" + txtPort.Text);
+
+            server.Events.ClientConnected += ClientConnected;
+            server.Events.ClientDisconnected += ClientDisconnected;
+            server.Events.DataReceived += DataReceived;
+
+            txtMessage.Enabled = false;
+            btnSend.Enabled = false;
+            btnStop.Enabled = false;
+        }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             server.Start();
 
-            txtInfo.Text = $"Starting...{Environment.NewLine}";
-            
+            txtIP.Enabled = false;
+            txtPort.Enabled = false;
             btnStart.Enabled = false;
+            btnStop.Enabled = true;
             btnSend.Enabled = true;
+            txtMessage.Enabled = true;
+
+            txtInfo.Text = $"Starting...{Environment.NewLine}";
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void btnStop_Click(object sender, EventArgs e)
         {
-            server = new SimpleTcpServer(txtIP.Text + ":" + txtPort.Text);
-            
-            server.Events.ClientConnected += Events_ClientConnected;
-            server.Events.ClientDisconnected += Events_ClientDisconnected;
-            server.Events.DataReceived += Events_DataReceived;
+            server.Stop();
 
+            foreach (var item in listClientIP.Items)
+            {
+                server.Send(item.ToString(), "stop");
+            }
+
+            listClientIP.Items.Clear();
+            
+            txtInfo.Text += $"Stopping...{Environment.NewLine}";
+
+            txtIP.Enabled = true;
+            txtPort.Enabled = true;
+            btnStart.Enabled = true;
+            btnStop.Enabled = false;
+            txtMessage.Enabled = false;
             btnSend.Enabled = false;
         }
 
-        private void Events_ClientConnected(object sender, ConnectionEventArgs e)
+        private void ClientConnected(object sender, ConnectionEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -43,7 +70,7 @@ namespace TCPServer
             });   
         }
 
-        private void Events_DataReceived(object? sender, DataReceivedEventArgs e)
+        private void DataReceived(object sender, DataReceivedEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -76,16 +103,20 @@ namespace TCPServer
                         //txtInfo.Text += $"[Execution time: {executionTime.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
                         txtMessage.Text = string.Empty;
                     }
+                    else
+                    {
+                        MessageBox.Show("The text box is empty. A message must be entered.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 catch
                 {
-                    MessageBox.Show("A client must be selected!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please select a client!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //txtInfo.Text += $"A client must be selected!{Environment.NewLine}{Environment.NewLine}";
                 }
             } 
         }
 
-        private void Events_ClientDisconnected(object? sender, ConnectionEventArgs e)
+        private void ClientDisconnected(object? sender, ConnectionEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {

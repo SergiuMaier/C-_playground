@@ -39,6 +39,7 @@
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnStop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -139,23 +140,34 @@
             // txtPort
             // 
             this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPort.Location = new System.Drawing.Point(269, 13);
+            this.txtPort.Location = new System.Drawing.Point(268, 13);
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(64, 29);
+            this.txtPort.Size = new System.Drawing.Size(65, 29);
             this.txtPort.TabIndex = 9;
-            this.txtPort.Text = "8910";
+            this.txtPort.Text = "8000";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(219, 13);
+            this.label4.Location = new System.Drawing.Point(218, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 25);
             this.label4.TabIndex = 10;
             this.label4.Text = "Port:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnStop.Location = new System.Drawing.Point(428, 12);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(83, 30);
+            this.btnStop.TabIndex = 11;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // Form1
             // 
@@ -163,6 +175,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(526, 478);
+            this.Controls.Add(this.btnStop);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.label3);
@@ -197,5 +210,6 @@
         private TextBox txtInfo;
         private TextBox txtPort;
         private Label label4;
+        private Button btnStop;
     }
 }

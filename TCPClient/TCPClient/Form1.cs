@@ -5,17 +5,19 @@ namespace TCPClient
 {
     public partial class Form1 : Form
     {
+        SimpleTcpClient client;
+        System.Diagnostics.Stopwatch executionTimeClient = new System.Diagnostics.Stopwatch(); //fixing ambiguous reference between namespaces  
+
         public Form1()
         {
             InitializeComponent();
         }
-
-        SimpleTcpClient client;
-        System.Diagnostics.Stopwatch executionTimeClient = new System.Diagnostics.Stopwatch(); //fixing ambiguous reference between namespaces  
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
+            txtMessage.Enabled = false;
             btnSend.Enabled = false;
+            btnDisconnect.Enabled = false;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -23,19 +25,45 @@ namespace TCPClient
             try
             {
                 client = new SimpleTcpClient(txtIP.Text + ":" + txtPort.Text);
-                
-                client.Events.Connected += Events_Connected;
-                client.Events.DataReceived += Events_DataReceived;
-                client.Events.Disconnected += Events_Disconnected;
+
+                client.Events.Connected += Connected;
+                client.Events.DataReceived += DataReceived;
+                client.Events.Disconnected += Disconnected;
 
                 client.Connect();
-                
+
+                txtIP.Enabled = false;
+                txtPort.Enabled = false;
                 btnSend.Enabled = true;
+                txtMessage.Enabled = true;
                 btnConnect.Enabled = false;
+                btnDisconnect.Enabled = true;
             }
             catch
             {
-                MessageBox.Show("An IP address and port must be added.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if((txtIP.Text == "") && (txtPort.Text == ""))
+                    MessageBox.Show("Please enter an IP address and a port number.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Please enter a correct IP address and port number.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //client.Disconnected();
+
+                txtIP.Enabled = true;
+                txtPort.Enabled = true;
+                btnSend.Enabled = false;
+                txtMessage.Enabled = false;
+                btnConnect.Enabled = true;
+                btnDisconnect.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -58,12 +86,16 @@ namespace TCPClient
                     txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
                     txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
                     //txtInfo.Text += $"[Execution time: {executionTimeClient.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
-                    txtMessage.Text = string.Empty;     
+                    txtMessage.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("The text box is empty. A message must be entered.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private void Events_DataReceived(object sender, DataReceivedEventArgs e)
+        private void DataReceived(object sender, DataReceivedEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -78,7 +110,7 @@ namespace TCPClient
             });
         }
 
-        private void Events_Connected(object sender, ConnectionEventArgs e)
+        private void Connected(object sender, ConnectionEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -86,7 +118,7 @@ namespace TCPClient
             });
         }
 
-        private void Events_Disconnected(object sender, ConnectionEventArgs e)
+        private void Disconnected(object sender, ConnectionEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -98,6 +130,11 @@ namespace TCPClient
         {
             txtInfo.SelectionStart = txtInfo.TextLength;
             txtInfo.ScrollToCaret();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+            //asdsdasdfasdfad
         }
     }
 }
