@@ -114,7 +114,7 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                txtInfo.Text += $"Connected to server [{e.IpPort}].{Environment.NewLine}{Environment.NewLine}";
+                txtInfo.Text += $"Connected to [{e.IpPort}].{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
@@ -122,7 +122,7 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                txtInfo.Text += $"Server [{e.IpPort}] disconnected.{Environment.NewLine}{Environment.NewLine}";
+                txtInfo.Text += $"[{e.IpPort}] disconnected.{Environment.NewLine}{Environment.NewLine}";
             });
         }
 

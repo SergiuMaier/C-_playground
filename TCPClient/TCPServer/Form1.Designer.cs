@@ -133,7 +133,7 @@
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInfo.Size = new System.Drawing.Size(499, 292);
+            this.txtInfo.Size = new System.Drawing.Size(499, 243);
             this.txtInfo.TabIndex = 3;
             this.txtInfo.TextChanged += new System.EventHandler(this.txtInfo_TextChanged);
             // 
@@ -174,7 +174,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(526, 478);
+            this.ClientSize = new System.Drawing.Size(526, 428);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPort);

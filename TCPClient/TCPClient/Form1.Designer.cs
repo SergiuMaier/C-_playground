@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
@@ -39,28 +38,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDisconnect = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(21, 36);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(25, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 21);
+            this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "IP address:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(10, 136);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Message:";
             // 
             // txtIP
             // 
@@ -75,29 +66,29 @@
             // 
             this.txtInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtInfo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtInfo.Location = new System.Drawing.Point(13, 171);
+            this.txtInfo.Location = new System.Drawing.Point(11, 63);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInfo.Size = new System.Drawing.Size(499, 267);
+            this.txtInfo.Size = new System.Drawing.Size(386, 189);
             this.txtInfo.TabIndex = 3;
             this.txtInfo.TextChanged += new System.EventHandler(this.txtInfo_TextChanged);
             // 
             // txtMessage
             // 
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMessage.Location = new System.Drawing.Point(97, 134);
+            this.txtMessage.Location = new System.Drawing.Point(11, 28);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(325, 29);
+            this.txtMessage.Size = new System.Drawing.Size(308, 29);
             this.txtMessage.TabIndex = 4;
             // 
             // btnSend
             // 
-            this.btnSend.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSend.Location = new System.Drawing.Point(428, 134);
+            this.btnSend.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSend.Location = new System.Drawing.Point(325, 28);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(83, 29);
+            this.btnSend.Size = new System.Drawing.Size(72, 29);
             this.btnSend.TabIndex = 5;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -105,7 +96,7 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnConnect.Location = new System.Drawing.Point(301, 31);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(96, 29);
@@ -119,17 +110,17 @@
             this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPort.Location = new System.Drawing.Point(107, 67);
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(111, 29);
+            this.txtPort.Size = new System.Drawing.Size(97, 29);
             this.txtPort.TabIndex = 7;
             this.txtPort.Text = "8000";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(5, 70);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(11, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 21);
+            this.label3.Size = new System.Drawing.Size(93, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "Port number:";
             // 
@@ -141,18 +132,18 @@
             this.groupBox1.Controls.Add(this.txtPort);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtIP);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(14, 10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(408, 110);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Server connection";
+            this.groupBox1.Text = "Connection";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnDisconnect
             // 
-            this.btnDisconnect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDisconnect.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDisconnect.Location = new System.Drawing.Point(301, 67);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(96, 29);
@@ -161,17 +152,27 @@
             this.btnDisconnect.UseVisualStyleBackColor = true;
             this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtMessage);
+            this.groupBox2.Controls.Add(this.btnSend);
+            this.groupBox2.Controls.Add(this.txtInfo);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox2.Location = new System.Drawing.Point(14, 126);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(408, 264);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Message";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(526, 451);
+            this.ClientSize = new System.Drawing.Size(436, 405);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.txtMessage);
-            this.Controls.Add(this.txtInfo);
-            this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -179,15 +180,15 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private Label label1;
-        private Label label2;
         private TextBox txtIP;
         private TextBox txtInfo;
         private TextBox txtMessage;
@@ -197,5 +198,6 @@
         private Label label3;
         private GroupBox groupBox1;
         private Button btnDisconnect;
+        private GroupBox groupBox2;
     }
 }
