@@ -1,4 +1,5 @@
 using SuperSimpleTcp;
+using System.Globalization;
 using System.Text;
 
 namespace TCPClient
@@ -52,7 +53,7 @@ namespace TCPClient
         {
             try
             {
-                //client.Disconnected();
+                //client.Disconnect(); //crash 
 
                 txtIP.Enabled = true;
                 txtPort.Enabled = true;
@@ -72,20 +73,26 @@ namespace TCPClient
             if (client.IsConnected)
             {
                 if (!string.IsNullOrEmpty(txtMessage.Text))
-                { 
-                    //alta varianta de calcul timp
-                    //var startTime = DateTime.Now;
-                    //...
-                    //Sending time: {DateTime.Now - startTime}
-                    
-                    //executionTimeClient.Reset();
-                    //executionTimeClient.Start();
-                    client.Send(txtMessage.Text);
-                    //executionTimeClient.Stop();
+                {
+                    try
+                    {
+                        var bytes = txtMessage.Text.Split(' ').Select(hx => byte.Parse(hx, NumberStyles.AllowHexSpecifier)).ToArray();
+                       
+                        //trebuie tinut cont de header (vezi bookmark)
+                        //fiecare dintre cele 3 casete inainte de user id (slave address) sunt create separat  
+                        //+ bytes
+                        //iar apoi sunt 'adunate' toate in Send(); 
+                        
+                        client.Send(bytes);
+                        
+                        txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Invalid format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-                    txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
-                    txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
-                    //txtInfo.Text += $"[Execution time: {executionTimeClient.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
+                    //txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
                     txtMessage.Text = string.Empty;
                 }
                 else
@@ -99,14 +106,8 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                //executionTimeClient.Reset();
-                txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
-
-                executionTimeClient.Start();
-                txtInfo.Text += $"Server: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
-                executionTimeClient.Stop();
-                
-                txtInfo.Text += $"[Time: {executionTimeClient.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
+                //txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
+                txtInfo.Text += $"{Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
@@ -132,6 +133,20 @@ namespace TCPClient
             txtInfo.ScrollToCaret();
         }
 
+        //private void txtMessage_Validating(object sender, CancelEventArgs e)
+        //{
+        //    char[] allowedChars = new char[] { ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+
+        //    foreach (char character in txtMessage.Text.ToUpper().ToArray())
+        //    {
+        //        if (!allowedChars.Contains(character))
+        //        {
+        //            MessageBox.Show($"[{character}] is not a hexadecimal character", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //    }
+        //}
+
+        //cum sa sterg asta fara sa afectez?
         private void groupBox1_Enter(object sender, EventArgs e)
         {
             //asdsdasdfasdfad

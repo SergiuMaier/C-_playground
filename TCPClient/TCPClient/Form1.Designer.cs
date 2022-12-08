@@ -60,7 +60,7 @@
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(188, 29);
             this.txtIP.TabIndex = 2;
-            this.txtIP.Text = "127.0.0.1";
+            this.txtIP.Text = "192.168.88.100";
             // 
             // txtInfo
             // 
@@ -112,7 +112,7 @@
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(97, 29);
             this.txtPort.TabIndex = 7;
-            this.txtPort.Text = "8000";
+            this.txtPort.Text = "502";
             // 
             // label3
             // 

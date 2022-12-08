@@ -75,13 +75,9 @@ namespace TCPServer
             this.Invoke((MethodInvoker)delegate
             {
                 txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
+                //txtInfo.Text += $"Client [{e.IpPort}]: {e.Data}{Environment.NewLine}{Environment.NewLine}";
 
-                //executionTime.Reset();
-                executionTime.Start();
-                txtInfo.Text += $"Client [{e.IpPort}]: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}";
-                executionTime.Stop();
-                
-                txtInfo.Text += $"[Time: {executionTime.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
+                txtInfo.Text += $"Client [{e.IpPort}]: {Encoding.UTF8.GetString(e.Data)}{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
@@ -93,14 +89,11 @@ namespace TCPServer
                 {
                     if (!string.IsNullOrEmpty(txtMessage.Text) && listClientIP.SelectedItems != null)
                     {
-                        //executionTime.Reset();
-                        //executionTime.Start();
                         server.Send(listClientIP.SelectedItem.ToString(), txtMessage.Text);
-                        //executionTime.Stop();
 
                         txtInfo.Text += $"[{DateTime.Now}]{Environment.NewLine}";
                         txtInfo.Text += $"Sent: {txtMessage.Text}{Environment.NewLine}{Environment.NewLine}";
-                        //txtInfo.Text += $"[Execution time: {executionTime.ElapsedMilliseconds} ms]{Environment.NewLine}{Environment.NewLine}";
+
                         txtMessage.Text = string.Empty;
                     }
                     else
@@ -111,7 +104,6 @@ namespace TCPServer
                 catch
                 {
                     MessageBox.Show("Please select a client!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //txtInfo.Text += $"A client must be selected!{Environment.NewLine}{Environment.NewLine}";
                 }
             } 
         }
