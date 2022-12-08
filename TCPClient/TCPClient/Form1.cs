@@ -133,19 +133,6 @@ namespace TCPClient
             txtInfo.ScrollToCaret();
         }
 
-        //private void txtMessage_Validating(object sender, CancelEventArgs e)
-        //{
-        //    char[] allowedChars = new char[] { ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-
-        //    foreach (char character in txtMessage.Text.ToUpper().ToArray())
-        //    {
-        //        if (!allowedChars.Contains(character))
-        //        {
-        //            MessageBox.Show($"[{character}] is not a hexadecimal character", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //    }
-        //}
-
         //cum sa sterg asta fara sa afectez?
         private void groupBox1_Enter(object sender, EventArgs e)
         {
