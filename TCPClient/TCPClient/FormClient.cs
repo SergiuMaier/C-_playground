@@ -15,8 +15,8 @@ namespace TCPClient
         
         private void FormClient_Load(object sender, EventArgs e)
         {
-            txtBoxTransactionIdentifier.CharacterCasing = CharacterCasing.Upper;
-            txtBoxProtocolIdentifier.CharacterCasing = CharacterCasing.Upper;
+            txtBoxTransactionId.CharacterCasing = CharacterCasing.Upper;
+            txtBoxProtocolId.CharacterCasing = CharacterCasing.Upper;
             txtBoxUnitId.CharacterCasing = CharacterCasing.Upper;
             txtBoxFunctionCode.CharacterCasing = CharacterCasing.Upper;
             txtBoxData.CharacterCasing = CharacterCasing.Upper;
@@ -43,8 +43,8 @@ namespace TCPClient
                 txtIP.Enabled = false;
                 txtPort.Enabled = false;
                 txtBoxFunctionCode.Enabled = true;
-                txtBoxTransactionIdentifier.Enabled = true;
-                txtBoxProtocolIdentifier.Enabled = true;
+                txtBoxTransactionId.Enabled = true;
+                txtBoxProtocolId.Enabled = true;
                 txtBoxData.Enabled = true;
                 txtBoxUnitId.Enabled = true;
             }
@@ -69,8 +69,8 @@ namespace TCPClient
                 txtIP.Enabled = true;
                 txtPort.Enabled = true;
                 txtBoxFunctionCode.Enabled = false;
-                txtBoxTransactionIdentifier.Enabled = false;
-                txtBoxProtocolIdentifier.Enabled = false;
+                txtBoxTransactionId.Enabled = false;
+                txtBoxProtocolId.Enabled = false;
                 txtBoxData.Enabled = false;
                 txtBoxUnitId.Enabled = false;
             }
@@ -80,9 +80,9 @@ namespace TCPClient
             }
         }
 
-        //Length
-        public const byte UnitIdentifierLength = 0x01;
-        public const byte FunctionCodeLength = 0x01;
+        //def length
+        public const byte unitIdLength = 0x01;
+        public const byte functionCodeLength = 0x01;
 
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -92,46 +92,59 @@ namespace TCPClient
                 {
                     try
                     {
-                        var transactionIdentifier = Convert.ToInt32(txtBoxTransactionIdentifier.Text, 16);
-                        var protocolIdentifier = Convert.ToInt32(txtBoxProtocolIdentifier.Text, 16);
-
+                        short transactionId = byte.Parse(txtBoxTransactionId.Text, NumberStyles.HexNumber);
+                        short protocolId = byte.Parse(txtBoxProtocolId.Text, NumberStyles.HexNumber);
                         byte unitId = byte.Parse(txtBoxUnitId.Text, NumberStyles.HexNumber);
                         byte functionCode = byte.Parse(txtBoxFunctionCode.Text, NumberStyles.HexNumber);
+                        short[] dataFrame = txtBoxData.Text.Split(' ')
+                            .Select(hex => Convert.ToInt16(hex))
+                            .ToArray();
+                        short lengthOfMessage = (short)(unitIdLength + functionCodeLength + 2 * dataFrame.Length); //vf asta pe site la FC 
 
-                        byte[] dataFrame = txtBoxData.Text.Split(' ').Select(hex => byte.Parse(hex, NumberStyles.AllowHexSpecifier)).ToArray();
-                        //byte[] dataFrame = txtBoxData.Text.Split(' ').Select(hex => Convert.ToByte(hex, 16)).ToArray();
+                        short[] buffer = new short[5 + dataFrame.Length];
+                        buffer[0] = transactionId;
+                        buffer[1] = protocolId;
+                        buffer[2] = lengthOfMessage;
+                        buffer[3] = unitId; //byte -> short !!
+                        buffer[4] = functionCode;
 
-                        //var lungime_in_hex = unitId + fc + data
-
-                        //client.Send( );  //trebuie toate concatenate
-                                           //nu pot trimite byte cu Send
-                                           //
-                        //txtInfo.Text += $"{dataFrameLength}";
-
-                        txtInfo.Text += $"{Environment.NewLine}request: 0x{txtBoxTransactionIdentifier.Text} 0x{txtBoxProtocolIdentifier.Text} " +
-                        //$"{lungime} " +
-                        $" 0x{txtBoxUnitId.Text} 0x{txtBoxFunctionCode.Text}";
-                        
-                        foreach(byte element in dataFrame)
+                        int elementNumber = 5;
+                        foreach(short d in dataFrame)
                         {
-                            txtInfo.Text += $" 0x{element}";
+                            buffer[elementNumber] = d;
+                            elementNumber++;
                         }
 
-                        txtInfo.Text += $"{Environment.NewLine}"; 
+                        txtInfo.Text += "request: ";
+                        foreach(short elem in buffer)
+                        {
+                            txtInfo.Text += $" {elem.ToString("X4")}";
+                        }
+
+                        //client.Send( );  
+
+                        //txtInfo.Text += $"{Environment.NewLine}request: {transactionId.ToString("X4")} {protocolId.ToString("X4")} " +
+                        //                $"{lengthOfMessage.ToString("X4")} {unitId.ToString("X2")} {functionCode.ToString("X2")}";
+
+                        //foreach (int element in dataFrame) //met mai ok ?
+                        //    txtInfo.Text += $" {element.ToString("X4")}";
+
+                        txtInfo.Text += Environment.NewLine;
                     }
                     catch
                     {
-                        MessageBox.Show("Invalid format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Invalid format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    txtBoxTransactionIdentifier.Text = string.Empty;
-                    txtBoxProtocolIdentifier.Text = string.Empty;
+                    txtBoxTransactionId.Text = string.Empty;
+                    txtBoxProtocolId.Text = string.Empty;
                     txtBoxUnitId.Text = string.Empty;
                     txtBoxFunctionCode.Text = string.Empty;
                     txtBoxData.Text = string.Empty;
                 }
                 else
-                {
+                {   //cred ca trebuie scoasa conditia asta si sa apara doar invalid format
+
                     MessageBox.Show("The text box is empty. A message must be entered.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -150,7 +163,7 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                txtInfo.Text += $"Connected to [{e.IpPort}].{Environment.NewLine}";
+                txtInfo.Text += $"Connected to [{e.IpPort}].{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
