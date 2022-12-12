@@ -90,7 +90,7 @@
             // 
             this.txtBoxFunctionCode.Enabled = false;
             this.txtBoxFunctionCode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBoxFunctionCode.Location = new System.Drawing.Point(129, 48);
+            this.txtBoxFunctionCode.Location = new System.Drawing.Point(166, 48);
             this.txtBoxFunctionCode.MaxLength = 2;
             this.txtBoxFunctionCode.Name = "txtBoxFunctionCode";
             this.txtBoxFunctionCode.Size = new System.Drawing.Size(32, 29);
@@ -170,13 +170,13 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.txtBoxUnitId);
             this.groupBox2.Controls.Add(this.txtBoxData);
             this.groupBox2.Controls.Add(this.txtBoxProtocolId);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtBoxTransactionId);
-            this.groupBox2.Controls.Add(this.txtBoxUnitId);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtBoxFunctionCode);
             this.groupBox2.Controls.Add(this.btnSend);
@@ -267,7 +267,7 @@
             // 
             this.txtBoxUnitId.Enabled = false;
             this.txtBoxUnitId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBoxUnitId.Location = new System.Drawing.Point(167, 48);
+            this.txtBoxUnitId.Location = new System.Drawing.Point(129, 48);
             this.txtBoxUnitId.MaxLength = 2;
             this.txtBoxUnitId.Name = "txtBoxUnitId";
             this.txtBoxUnitId.Size = new System.Drawing.Size(31, 29);

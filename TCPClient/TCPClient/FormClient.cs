@@ -84,69 +84,62 @@ namespace TCPClient
         public const byte unitIdLength = 0x01;
         public const byte functionCodeLength = 0x01;
 
+        public static void addBytesToBuffer(short nr, byte[] buffer, int index)
+        {
+            buffer[index] = (byte)(nr >> 8);
+            buffer[index+1] = (byte)(nr & 0xFF);
+        }
+
         private void btnSend_Click(object sender, EventArgs e)
         {
             if (client.IsConnected)
             {
-                if ((!string.IsNullOrEmpty(txtBoxFunctionCode.Text)) || (!string.IsNullOrEmpty(txtBoxData.Text)))
+                try
                 {
-                    try
-                    {
-                        short transactionId = byte.Parse(txtBoxTransactionId.Text, NumberStyles.HexNumber);
-                        short protocolId = byte.Parse(txtBoxProtocolId.Text, NumberStyles.HexNumber);
-                        byte unitId = byte.Parse(txtBoxUnitId.Text, NumberStyles.HexNumber);
-                        byte functionCode = byte.Parse(txtBoxFunctionCode.Text, NumberStyles.HexNumber);
-                        short[] dataFrame = txtBoxData.Text.Split(' ')
-                            .Select(hex => Convert.ToInt16(hex))
+                    short transactionId = short.Parse(txtBoxTransactionId.Text, NumberStyles.HexNumber);
+                    short protocolId = short.Parse(txtBoxProtocolId.Text, NumberStyles.HexNumber);
+                    byte unitId = byte.Parse(txtBoxUnitId.Text, NumberStyles.HexNumber);
+                    byte functionCode = byte.Parse(txtBoxFunctionCode.Text, NumberStyles.HexNumber);
+                    short[] dataFrame = txtBoxData.Text.Split(' ')
+                            .Select(hex => short.Parse(hex, NumberStyles.HexNumber))
                             .ToArray();
-                        short lengthOfMessage = (short)(unitIdLength + functionCodeLength + 2 * dataFrame.Length); //vf asta pe site la FC 
+                    short lengthOfMessage = (short)(unitIdLength + functionCodeLength + 2 * dataFrame.Length); //vf asta pe site la FC 
 
-                        short[] buffer = new short[5 + dataFrame.Length];
-                        buffer[0] = transactionId;
-                        buffer[1] = protocolId;
-                        buffer[2] = lengthOfMessage;
-                        buffer[3] = unitId; //byte -> short !!
-                        buffer[4] = functionCode;
+                    byte[] buffer = new byte[8 + 2 * dataFrame.Length]; //256 e mai corect si apoi tin cont unde se termina mesajul la dataFrame
+                                                                        
+                    addBytesToBuffer(transactionId, buffer, 0);
+                    addBytesToBuffer(protocolId, buffer, 2);
+                    addBytesToBuffer(lengthOfMessage, buffer, 4);
+                    buffer[6] = unitId;
+                    buffer[7] = functionCode;
 
-                        int elementNumber = 5;
-                        foreach(short d in dataFrame)
-                        {
-                            buffer[elementNumber] = d;
-                            elementNumber++;
-                        }
-
-                        txtInfo.Text += "request: ";
-                        foreach(short elem in buffer)
-                        {
-                            txtInfo.Text += $" {elem.ToString("X4")}";
-                        }
-
-                        //client.Send( );  
-
-                        //txtInfo.Text += $"{Environment.NewLine}request: {transactionId.ToString("X4")} {protocolId.ToString("X4")} " +
-                        //                $"{lengthOfMessage.ToString("X4")} {unitId.ToString("X2")} {functionCode.ToString("X2")}";
-
-                        //foreach (int element in dataFrame) //met mai ok ?
-                        //    txtInfo.Text += $" {element.ToString("X4")}";
-
-                        txtInfo.Text += Environment.NewLine;
-                    }
-                    catch
+                    int indexNumber = 8;
+                    foreach (short dataElement in dataFrame)
                     {
-                    MessageBox.Show("Invalid format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        addBytesToBuffer(dataElement, buffer, indexNumber);
+                        indexNumber += 2;
                     }
 
-                    txtBoxTransactionId.Text = string.Empty;
-                    txtBoxProtocolId.Text = string.Empty;
-                    txtBoxUnitId.Text = string.Empty;
-                    txtBoxFunctionCode.Text = string.Empty;
-                    txtBoxData.Text = string.Empty;
-                }
-                else
-                {   //cred ca trebuie scoasa conditia asta si sa apara doar invalid format
+                    txtInfo.Text += "request: ";
+                    foreach (byte element in buffer)
+                    {
+                        txtInfo.Text += $"{element:X2}";
+                    }
 
-                    MessageBox.Show("The text box is empty. A message must be entered.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    client.Send(buffer);
+
+                    txtInfo.Text += Environment.NewLine;
                 }
+                catch
+                {
+                MessageBox.Show("Invalid format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                txtBoxTransactionId.Text = string.Empty;
+                txtBoxProtocolId.Text = string.Empty;
+                txtBoxUnitId.Text = string.Empty;
+                txtBoxFunctionCode.Text = string.Empty;
+                txtBoxData.Text = string.Empty;
             }
         }
 
