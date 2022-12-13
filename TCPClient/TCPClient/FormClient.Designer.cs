@@ -40,13 +40,13 @@
             this.btnDisconnect = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtBoxUnitId = new System.Windows.Forms.TextBox();
             this.txtBoxData = new System.Windows.Forms.TextBox();
             this.txtBoxProtocolId = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBoxTransactionId = new System.Windows.Forms.TextBox();
-            this.txtBoxUnitId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
@@ -82,7 +82,7 @@
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInfo.Size = new System.Drawing.Size(469, 217);
+            this.txtInfo.Size = new System.Drawing.Size(469, 305);
             this.txtInfo.TabIndex = 3;
             this.txtInfo.TextChanged += new System.EventHandler(this.txtInfo_TextChanged);
             // 
@@ -95,7 +95,7 @@
             this.txtBoxFunctionCode.Name = "txtBoxFunctionCode";
             this.txtBoxFunctionCode.Size = new System.Drawing.Size(32, 29);
             this.txtBoxFunctionCode.TabIndex = 4;
-            this.txtBoxFunctionCode.Text = "03";
+            this.txtBoxFunctionCode.Text = "04";
             this.txtBoxFunctionCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnSend
@@ -198,6 +198,17 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "UId:";
             // 
+            // txtBoxUnitId
+            // 
+            this.txtBoxUnitId.Enabled = false;
+            this.txtBoxUnitId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtBoxUnitId.Location = new System.Drawing.Point(129, 48);
+            this.txtBoxUnitId.MaxLength = 2;
+            this.txtBoxUnitId.Name = "txtBoxUnitId";
+            this.txtBoxUnitId.Size = new System.Drawing.Size(31, 29);
+            this.txtBoxUnitId.TabIndex = 10;
+            this.txtBoxUnitId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // txtBoxData
             // 
             this.txtBoxData.Enabled = false;
@@ -207,7 +218,7 @@
             this.txtBoxData.Name = "txtBoxData";
             this.txtBoxData.Size = new System.Drawing.Size(193, 29);
             this.txtBoxData.TabIndex = 16;
-            this.txtBoxData.Text = "0000 0002 0004";
+            this.txtBoxData.Text = "0098 0004";
             // 
             // txtBoxProtocolId
             // 
@@ -263,18 +274,6 @@
             this.txtBoxTransactionId.Text = "0001";
             this.txtBoxTransactionId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtBoxUnitId
-            // 
-            this.txtBoxUnitId.Enabled = false;
-            this.txtBoxUnitId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBoxUnitId.Location = new System.Drawing.Point(129, 48);
-            this.txtBoxUnitId.MaxLength = 2;
-            this.txtBoxUnitId.Name = "txtBoxUnitId";
-            this.txtBoxUnitId.Size = new System.Drawing.Size(31, 29);
-            this.txtBoxUnitId.TabIndex = 10;
-            this.txtBoxUnitId.Text = "0D";
-            this.txtBoxUnitId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -291,7 +290,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(14, 222);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(490, 261);
+            this.groupBox3.Size = new System.Drawing.Size(490, 347);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Message";
@@ -301,7 +300,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(517, 495);
+            this.ClientSize = new System.Drawing.Size(517, 581);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

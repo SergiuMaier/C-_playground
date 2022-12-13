@@ -32,13 +32,8 @@ namespace TCPClient
 
                 client.Events.Connected += Connected;
                 client.Events.DataReceived += DataReceived;
-                client.Events.Disconnected += Disconnected;
 
                 client.Connect();
-
-                btnSend.Enabled = true;
-                btnConnect.Enabled = false;
-                btnDisconnect.Enabled = true;
 
                 txtIP.Enabled = false;
                 txtPort.Enabled = false;
@@ -46,7 +41,7 @@ namespace TCPClient
                 txtBoxTransactionId.Enabled = true;
                 txtBoxProtocolId.Enabled = true;
                 txtBoxData.Enabled = true;
-                txtBoxUnitId.Enabled = true;
+                txtBoxUnitId.Enabled = true;                     
             }
             catch
             {
@@ -61,10 +56,12 @@ namespace TCPClient
         {
             try
             {
-                //client.Disconnect(); //crash 
-                btnSend.Enabled = false;
+                client.Events.Disconnected += Disconnected;
+                //client.Disconnect(); //crash
+
                 btnConnect.Enabled = true;
                 btnDisconnect.Enabled = false;
+                btnSend.Enabled = false;
 
                 txtIP.Enabled = true;
                 txtPort.Enabled = true;
@@ -84,10 +81,10 @@ namespace TCPClient
         public const byte unitIdLength = 0x01;
         public const byte functionCodeLength = 0x01;
 
-        public static void addBytesToBuffer(short nr, byte[] buffer, int index)
+        public static void addTwoBytesToBuffer(short number, byte[] arr, int indexArr)
         {
-            buffer[index] = (byte)(nr >> 8);
-            buffer[index+1] = (byte)(nr & 0xFF);
+            arr[indexArr] = (byte)(number >> 8);
+            arr[indexArr + 1] = (byte)(number);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -105,29 +102,29 @@ namespace TCPClient
                             .ToArray();
                     short lengthOfMessage = (short)(unitIdLength + functionCodeLength + 2 * dataFrame.Length); //vf asta pe site la FC 
 
-                    byte[] buffer = new byte[8 + 2 * dataFrame.Length]; //256 e mai corect si apoi tin cont unde se termina mesajul la dataFrame
-                                                                        
-                    addBytesToBuffer(transactionId, buffer, 0);
-                    addBytesToBuffer(protocolId, buffer, 2);
-                    addBytesToBuffer(lengthOfMessage, buffer, 4);
+                    byte[] buffer = new byte[8 + 2 * dataFrame.Length]; //256 e mai corect si apoi tin cont de indexul unde
+                                                                        //se termina mesajul in dataFrame
+                    addTwoBytesToBuffer(transactionId, buffer, 0);
+                    addTwoBytesToBuffer(protocolId, buffer, 2);
+                    addTwoBytesToBuffer(lengthOfMessage, buffer, 4);
                     buffer[6] = unitId;
                     buffer[7] = functionCode;
 
                     int indexNumber = 8;
                     foreach (short dataElement in dataFrame)
                     {
-                        addBytesToBuffer(dataElement, buffer, indexNumber);
+                        addTwoBytesToBuffer(dataElement, buffer, indexNumber);
                         indexNumber += 2;
                     }
 
                     txtInfo.Text += "request: ";
                     foreach (byte element in buffer)
                     {
-                        txtInfo.Text += $"{element:X2}";
+                        txtInfo.Text += $" {element:X2}";
                     }
 
                     client.Send(buffer);
-
+                    
                     txtInfo.Text += Environment.NewLine;
                 }
                 catch
@@ -135,11 +132,11 @@ namespace TCPClient
                 MessageBox.Show("Invalid format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                txtBoxTransactionId.Text = string.Empty;
-                txtBoxProtocolId.Text = string.Empty;
-                txtBoxUnitId.Text = string.Empty;
-                txtBoxFunctionCode.Text = string.Empty;
-                txtBoxData.Text = string.Empty;
+                //txtBoxTransactionId.Text = string.Empty;
+                //txtBoxProtocolId.Text = string.Empty;
+                //txtBoxUnitId.Text = string.Empty;
+                //txtBoxFunctionCode.Text = string.Empty;
+                //txtBoxData.Text = string.Empty;
             }
         }
 
@@ -147,8 +144,12 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                string response = Encoding.UTF8.GetString(e.Data);
-                txtInfo.Text += $"response: {response}{Environment.NewLine}";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                foreach (var i in e.Data)
+                    stringBuilder.Append(i.ToString("X2") + " ");
+
+                txtInfo.Text += $"response: {stringBuilder.ToString()}{Environment.NewLine}{Environment.NewLine}";
             });
         }
 
@@ -157,6 +158,9 @@ namespace TCPClient
             this.Invoke((MethodInvoker)delegate
             {
                 txtInfo.Text += $"Connected to [{e.IpPort}].{Environment.NewLine}{Environment.NewLine}";
+                btnSend.Enabled = true;
+                btnConnect.Enabled = false;
+                btnDisconnect.Enabled = true;
             });
         }
 
@@ -164,7 +168,10 @@ namespace TCPClient
         {
             this.Invoke((MethodInvoker)delegate
             {
-                txtInfo.Text += $"{Environment.NewLine}[{e.IpPort}] disconnected.{Environment.NewLine}";
+                txtInfo.Text += $"[{e.IpPort}] disconnected.{Environment.NewLine}";
+                btnConnect.Enabled = true;
+                txtIP.Enabled = true;
+                txtPort.Enabled = true;
             });
         }
 
