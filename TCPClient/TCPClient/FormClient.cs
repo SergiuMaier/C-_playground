@@ -46,9 +46,9 @@ namespace TCPClient
             catch
             {
                 if((txtIP.Text == "") && (txtPort.Text == ""))
-                    MessageBox.Show("Please enter an IP address and a port number.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please enter an IP Address and a Port Number.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show("Please enter a correct IP address and port number.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please enter a correct IP Address and Port Number.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -129,7 +129,7 @@ namespace TCPClient
                 }
                 catch
                 {
-                MessageBox.Show("Invalid format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid format", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 //txtBoxTransactionId.Text = string.Empty;
